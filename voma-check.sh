@@ -8,5 +8,5 @@ for line in `esxcli storage vmfs extent list | grep vmhba`; do
 	lun=`echo $line | awk '{ print $4}'`
 	result=`voma -m vmfs -f check -d /vmfs/devices/disks/$lun`
 	errors=`echo $result | sed -e 's/.*Total Errors/Total Errors/'`
-	echo $datastore $errors
+	echo $datastore $errors >> lun_report.txt
 done
